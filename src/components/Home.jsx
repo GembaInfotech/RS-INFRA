@@ -9,9 +9,9 @@ const Home = () => {
   const [cards, setCards] = useState(CardsData);  // State to hold cards data
   const [selectedCard, setSelectedCard] = useState(CardsData[0]);  // Initially selected card
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [sidebarOpen, setSidebarOpen] = useState(true);  // State to manage sidebar visibility
+  const [sidebarOpen, setSidebarOpen] = useState(false);  // Start with sidebar hidden
 
-  // Automatically change card every 10 seconds (optional)
+  // Automatically change card every 15 seconds (optional)
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentIndex((prevIndex) => {
@@ -19,7 +19,7 @@ const Home = () => {
         setSelectedCard(cards[nextIndex]);
         return nextIndex;
       });
-    }, 10000); // Change every 10 seconds
+    }, 15000); // Change every 15 seconds
 
     return () => clearInterval(intervalId);  // Clean up interval on unmount
   }, [cards]);
@@ -32,13 +32,13 @@ const Home = () => {
   return (
     <div className="flex flex-col lg:flex-row h-screen">
       {/* Sidebar section */}
-      <div
+      {/* <div
         className={`transition-all duration-300 ${sidebarOpen ? 'lg:w-1/4 w-full' : 'w-0'} 
-                    h-full overflow-hidden lg:block block`}>
-        <Sidebar cards={cards} onSelectCard={setSelectedCard} />
+                    h-full overflow-hidden lg:block block overflow-hidden`}>
+        <Sidebar cards={cards} onSelectCard={setSelectedCard} /> */}
         
         {/* Sidebar toggle button - visible only on small screens */}
-        <button
+        {/* <button
           onClick={toggleSidebar}
           className="absolute top-4 z-20 bg-[#4a4c50] text-white p-2 px-3 ml-1">
           <FontAwesomeIcon
@@ -47,7 +47,7 @@ const Home = () => {
             size="lg"
           />
         </button>
-      </div>
+      </div> */}
 
       {/* Dashboard section */}
       <div
